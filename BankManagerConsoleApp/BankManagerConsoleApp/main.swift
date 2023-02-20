@@ -5,3 +5,10 @@
 // 
 
 import Foundation
+
+
+var queue: LinkedlistQueue<String> = LinkedlistQueue<String>()
+
+let new = LinkedlistNode(value: "newone")
+queue.enqueue(new)
+print(queue.first()?.value)
