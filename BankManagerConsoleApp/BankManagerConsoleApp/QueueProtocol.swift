@@ -7,19 +7,53 @@
 
 import Foundation
 
-/*
- 모든 Queue는 아래와 같은 동일한 메서드와 Node를 갖기 때문에 protocol로 설정
- */
-protocol Node {
-    associatedtype T
-    var value: T { get }
-    var next: Self? { get set }
-}
-
 protocol Queue {
-    mutating func enqueue<Element: Node>(_ newNode: Element)
-    mutating func dequeue<Element: Node>() -> Element?
+    associatedtype T
+    var head: LinkedlistNode<T>? { get set }
+    
+    mutating func enqueue(_ newNode: LinkedlistNode<T>)
+    mutating func dequeue() -> LinkedlistNode<T>?
     func clear()
     func peek()
     func isEmpty() -> Bool
+}
+
+extension Queue {
+    mutating func enqueue(_ newNode: LinkedlistNode<T>) {
+        if head == nil {
+            head = newNode
+            return
+        }
+        
+        var node = head
+        while node?.next != nil {
+            node = node?.next
+        }
+        
+        node?.next = newNode
+    }
+    
+    mutating func dequeue() -> LinkedlistNode<T>? {
+        guard head != nil else {
+            return nil
+        }
+        
+        let result = head
+        head = head?.next
+        
+        return result
+    }
+    
+    func clear() {
+        
+    }
+    
+    func peek() {
+        
+    }
+    
+    func isEmpty() -> Bool {
+        return head == nil
+    }
+    
 }
