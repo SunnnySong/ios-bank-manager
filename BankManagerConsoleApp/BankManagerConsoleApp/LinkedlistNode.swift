@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class LinkedlistNode<T> {
+final class LinkedlistNode<T>: Node {
     var value: T
     var next: LinkedlistNode?
 
