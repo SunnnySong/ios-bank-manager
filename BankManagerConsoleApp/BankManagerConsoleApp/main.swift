@@ -6,8 +6,12 @@
 
 import Foundation
 
-var queue: Linkedlist<String> = Linkedlist<String>()
+var waitingList1: Linkedlist<String> = Linkedlist<String>()
 
-let new = LinkedlistNode(value: "newone")
-queue.enqueue(new)
-print(queue.first()?.value)
+var waitingList2: [String] = []
+
+
+//let new = LinkedlistNode(value: "newone")
+//queue.enqueue(new)
+//queue.append(data: "heyyyy")
+//print(queue.first()?.value)

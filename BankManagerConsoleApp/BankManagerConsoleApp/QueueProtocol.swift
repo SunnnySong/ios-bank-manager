@@ -13,10 +13,10 @@ protocol Node {
     var next: Self? { get set }
 }
 
-protocol Queue {
+protocol QueueDataStructure {
     associatedtype N: Node
     associatedtype T
-    var head: N? { get set }    // T = Node
+    var front: N? { get set }    // T = Node
     
     mutating func enqueue(_ newNode: N)
     mutating func dequeue() -> N?
@@ -25,14 +25,14 @@ protocol Queue {
 //    func isEmpty() -> Bool
 }
 
-extension Queue where N == LinkedlistNode<T> {
+extension QueueDataStructure where N == LinkedlistNode<T> {
     mutating func enqueue(_ newNode: N) {
-        if head == nil {
-            head = newNode
+        if front == nil {
+            front = newNode
             return
         }
 
-        var node = head
+        var node = front
         while node?.next != nil {
             node = node?.next
         }
@@ -41,12 +41,12 @@ extension Queue where N == LinkedlistNode<T> {
     }
     
     mutating func dequeue() -> N? {
-        guard head != nil else {
+        guard front != nil else {
             return nil
         }
 
-        let result = head
-        head = head?.next
+        let result = front
+        front = front?.next
 
         return result
     }
