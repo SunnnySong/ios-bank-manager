@@ -6,7 +6,7 @@
 
 import Foundation
 
-var queue: LinkedlistQueue<String> = LinkedlistQueue<String>()
+var queue: Linkedlist<String> = Linkedlist<String>()
 
 let new = LinkedlistNode(value: "newone")
 queue.enqueue(new)

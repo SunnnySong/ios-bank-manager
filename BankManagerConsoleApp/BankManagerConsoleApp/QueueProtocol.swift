@@ -14,12 +14,40 @@ protocol Node {
 }
 
 protocol Queue {
+    associatedtype N: Node
     associatedtype T
-    var head: T? { get set }
+    var head: N? { get set }    // T = Node
     
-    mutating func enqueue(_ newNode: T)
-    mutating func dequeue() -> T?
-    func clear()
-    func peek()
-    func isEmpty() -> Bool
+    mutating func enqueue(_ newNode: N)
+    mutating func dequeue() -> N?
+//    func clear()
+//    func peek()
+//    func isEmpty() -> Bool
+}
+
+extension Queue where N == LinkedlistNode<T> {
+    mutating func enqueue(_ newNode: N) {
+        if head == nil {
+            head = newNode
+            return
+        }
+
+        var node = head
+        while node?.next != nil {
+            node = node?.next
+        }
+
+        node?.next = newNode
+    }
+    
+    mutating func dequeue() -> N? {
+        guard head != nil else {
+            return nil
+        }
+
+        let result = head
+        head = head?.next
+
+        return result
+    }
 }
