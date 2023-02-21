@@ -6,12 +6,11 @@
 
 import Foundation
 
-var waitingList1: Linkedlist<String> = Linkedlist<String>()
+var waitingQueue = WaitingManager<Int>()
+waitingQueue.add(1)
+waitingQueue.add(2)
+waitingQueue.add(3)
 
-var waitingList2: [String] = []
-
-
-//let new = LinkedlistNode(value: "newone")
-//queue.enqueue(new)
-//queue.append(data: "heyyyy")
-//print(queue.first()?.value)
+print(waitingQueue.remove())
+print(waitingQueue.remove())
+print(waitingQueue.remove())

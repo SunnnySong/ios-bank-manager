@@ -7,17 +7,8 @@
 
 import Foundation
 
-struct Linkedlist<T>: QueueDataStructure {
-    var front: LinkedlistNode<T>?
-//
-//    func first() -> LinkedlistNode<T>? {
-//        return head
-//    }
-    
-    mutating func append(data: T) {
-        let node = LinkedlistNode(value: data)
-        self.enqueue(node)
-    }
+struct Linkedlist<T> {
+//    var head: LinkedlistNode<T>?
 }
 
 
