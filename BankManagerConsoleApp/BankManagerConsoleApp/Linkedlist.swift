@@ -7,9 +7,9 @@
 
 import Foundation
 
-struct Linkedlist<T> {
+//struct Linkedlist<T> {
 //    var head: LinkedlistNode<T>?
-}
+//}
 
 
 

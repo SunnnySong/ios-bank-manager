@@ -10,12 +10,12 @@ import Foundation
 struct WaitingManager<T>: QueueDataStructure {
     var front: LinkedlistNode<T>?
     
-    mutating func add(_ newData: T) {
-        let newNode = LinkedlistNode(value: newData)
+    mutating func add(_ customer: T) {
+        let newNode = LinkedlistNode(value: customer)
         self.enqueue(newNode)
     }
     
-    mutating func remove() -> T? {
+    mutating func reduce() -> T? {
         let result = self.dequeue()
         return result?.value
     }
