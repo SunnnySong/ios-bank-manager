@@ -29,7 +29,7 @@ extension QueueDataStructure where Item == LinkedlistNode<T> {
             front = newItem
             return
         }
-
+        
         var node = front
         while node?.next != nil {
             node = node?.next
