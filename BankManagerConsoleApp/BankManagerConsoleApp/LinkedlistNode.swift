@@ -8,10 +8,10 @@
 import Foundation
 
 final class LinkedlistNode<T>: Node {
-    var value: T?
+    var value: T
     var next: LinkedlistNode?
 
-    init(value: T? = nil, next: LinkedlistNode? = nil) {
+    init(value: T, next: LinkedlistNode? = nil) {
         self.value = value
         self.next = next
     }
