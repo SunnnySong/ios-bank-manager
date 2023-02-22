@@ -5,3 +5,12 @@
 // 
 
 import Foundation
+
+
+BankManager().run()
+
+
+
+
+
+
