@@ -15,4 +15,5 @@ protocol Queue {
     func clear()
     func peek() -> T?
     func isEmpty() -> Bool
+    
 }

@@ -8,7 +8,6 @@
 import Foundation
 
 final class LinkedList<T> {
-    
     //MARK: - Properties
     
     private var head: Node<T>?
@@ -46,4 +45,5 @@ final class LinkedList<T> {
     func showFirst() -> T? {
         return self.head?.value
     }
+    
 }

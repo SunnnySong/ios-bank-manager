@@ -31,4 +31,5 @@ final class WaitingManager<T>: Queue {
     func isEmpty() -> Bool {
         return queue.isEmpty
     }
+    
 }

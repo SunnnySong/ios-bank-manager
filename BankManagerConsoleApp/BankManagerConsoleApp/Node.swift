@@ -15,4 +15,5 @@ final class Node<T> {
         self.value = value
         self.next = next
     }
+    
 }
