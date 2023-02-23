@@ -32,12 +32,11 @@ fileprivate extension BankState {
     var text: String {
         switch self {
         case .open:
-            return "1 : 은행개점 \n2 : 종료 \n입력 : "
+            return Namespace.printText.state
         case .close(let numberOfCustomer, let customerTime):
-            return "업무가 마감되었습니다. 오늘 업무를 처리한 고객은 총 \(numberOfCustomer)명이며, 총 업무시간은 \(customerTime)초 입니다.\n"
+            return Namespace.printText.cloase(numberOfCustomer: numberOfCustomer, customerTime: customerTime)
         case .working(let order, let result):
-            let resultString = (result == true) ? "시작" : "완료"
-            return "\(order)번 고객 업무 \(resultString)\n"
+            return Namespace.printText.working(order: order, result: result)
         }
     }
 }
