@@ -18,6 +18,11 @@
 		F139FFC829A62F1000BCA81B /* QueueProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FAD6C5729A46747009809E4 /* QueueProtocol.swift */; };
 		F13AC2CD29A495AE007FD746 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13AC2CC29A495AE007FD746 /* Node.swift */; };
 		F13AC2CF29A4964F007FD746 /* LinkedList.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13AC2CE29A4964F007FD746 /* LinkedList.swift */; };
+		F1B37ABC29A67B6000D4FE8C /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1B37ABB29A67B6000D4FE8C /* Customer.swift */; };
+		F1B37ABE29A67BC900D4FE8C /* Bank.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1B37ABD29A67BC900D4FE8C /* Bank.swift */; };
+		F1B37AC029A67C6900D4FE8C /* InputManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1B37ABF29A67C6900D4FE8C /* InputManagerProtocol.swift */; };
+		F1B37AC229A67EB500D4FE8C /* OutputManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1B37AC129A67EB500D4FE8C /* OutputManagerProtocol.swift */; };
+		F1B37AC429A681C100D4FE8C /* BankAbilitySetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1B37AC329A681C100D4FE8C /* BankAbilitySetter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -42,6 +47,11 @@
 		F139FFBF29A62D1700BCA81B /* WaitingManagerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitingManagerTest.swift; sourceTree = "<group>"; };
 		F13AC2CC29A495AE007FD746 /* Node.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
 		F13AC2CE29A4964F007FD746 /* LinkedList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkedList.swift; sourceTree = "<group>"; };
+		F1B37ABB29A67B6000D4FE8C /* Customer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Customer.swift; sourceTree = "<group>"; };
+		F1B37ABD29A67BC900D4FE8C /* Bank.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bank.swift; sourceTree = "<group>"; };
+		F1B37ABF29A67C6900D4FE8C /* InputManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputManagerProtocol.swift; sourceTree = "<group>"; };
+		F1B37AC129A67EB500D4FE8C /* OutputManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutputManagerProtocol.swift; sourceTree = "<group>"; };
+		F1B37AC329A681C100D4FE8C /* BankAbilitySetter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankAbilitySetter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +76,8 @@
 			isa = PBXGroup;
 			children = (
 				4FAD6C5729A46747009809E4 /* QueueProtocol.swift */,
+				F1B37ABF29A67C6900D4FE8C /* InputManagerProtocol.swift */,
+				F1B37AC129A67EB500D4FE8C /* OutputManagerProtocol.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -91,8 +103,11 @@
 		C7694E78259C3EC00053667F /* BankManagerConsoleApp */ = {
 			isa = PBXGroup;
 			children = (
+				F1B37AC329A681C100D4FE8C /* BankAbilitySetter.swift */,
 				C7D65D1A259C8190005510E0 /* BankManager.swift */,
 				C7694E79259C3EC00053667F /* main.swift */,
+				F1B37ABB29A67B6000D4FE8C /* Customer.swift */,
+				F1B37ABD29A67BC900D4FE8C /* Bank.swift */,
 				F13AC2CC29A495AE007FD746 /* Node.swift */,
 				F13AC2CE29A4964F007FD746 /* LinkedList.swift */,
 				4FAD6C5B29A4BF27009809E4 /* WaitingManager.swift */,
@@ -198,10 +213,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				F13AC2CF29A4964F007FD746 /* LinkedList.swift in Sources */,
+				F1B37ABE29A67BC900D4FE8C /* Bank.swift in Sources */,
+				F1B37ABC29A67B6000D4FE8C /* Customer.swift in Sources */,
 				C7694E7A259C3EC00053667F /* main.swift in Sources */,
 				F13AC2CD29A495AE007FD746 /* Node.swift in Sources */,
 				4FAD6C5C29A4BF27009809E4 /* WaitingManager.swift in Sources */,
+				F1B37AC229A67EB500D4FE8C /* OutputManagerProtocol.swift in Sources */,
+				F1B37AC029A67C6900D4FE8C /* InputManagerProtocol.swift in Sources */,
 				4FAD6C5829A46747009809E4 /* QueueProtocol.swift in Sources */,
+				F1B37AC429A681C100D4FE8C /* BankAbilitySetter.swift in Sources */,
 				C7D65D1B259C8190005510E0 /* BankManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

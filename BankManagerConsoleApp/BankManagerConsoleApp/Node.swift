@@ -8,8 +8,13 @@
 import Foundation
 
 final class Node<T> {
+    
+    //MARK: - Properties
+    
     let value:T
     var next: Node<T>?
+    
+    //MARK: - LifeCycle
     
     init(value: T, next: Node<T>? = nil) {
         self.value = value

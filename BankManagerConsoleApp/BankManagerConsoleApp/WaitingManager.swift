@@ -9,7 +9,11 @@ import Foundation
 
 final class WaitingManager<T>: Queue {
     
+    //MARK: - Properties
+    
     private let queue: LinkedList = LinkedList<T>()
+    
+    //MARK: - Methodes
     
     func enqueue(_ newData: T) {
         queue.append(newData)
