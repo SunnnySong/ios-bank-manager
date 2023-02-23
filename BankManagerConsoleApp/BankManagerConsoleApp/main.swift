@@ -5,3 +5,9 @@
 // 
 
 import Foundation
+
+let bank = Bank()
+let bankManager = BankManager(bank: bank)
+
+bankManager.operateBank()
+

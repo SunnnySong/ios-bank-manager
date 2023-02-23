@@ -8,5 +8,7 @@
 import Foundation
 
 struct Bank {
-    
+    func reception(of customer: Customer){
+        sleep(UInt32(customer.taskDuration))
+    }
 }
