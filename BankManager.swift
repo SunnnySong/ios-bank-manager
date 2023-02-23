@@ -11,14 +11,19 @@ import Foundation
 struct BankManager {
     // 손님 줄세우기
     // 여기서 waitingQueue에 들어오는 item 을 customer type으로 지정해도 괜찮을지? 아니면 여기서도 제네릭으로 표현해야 하는지?
-    func addCustomer(in waitingQueue: WaitingManager<Customer>) {
-        waitingQueue.enqueue(Customer())
+    func addCustomer(in waitingQueue: WaitingManager<UInt>, number: UInt) {
+        waitingQueue.enqueue(number)
     }
     
-    func working(with waitingQueue: WaitingManager<Customer>, time: Double) {
-        // dequeue에 사실 completionHandler를 넣을까 했음.
-        _ = waitingQueue.dequeue()
-        // completionHandler를 이용하면 dequeue 완료된 이후 아래 코드 넣어주면 되니깐
+    func serveCustomer(with waitingQueue: WaitingManager<UInt>) -> UInt? {
+        // 은행 업무 시작
+        let customerNumber = waitingQueue.dequeue()
+        // 업무 중인 고객 return
+        return customerNumber
+    }
+    
+    func working(time: Double) {
+        // Step3에서는 업무의 type도 추가
         sleep(UInt32(time))
     }
 }

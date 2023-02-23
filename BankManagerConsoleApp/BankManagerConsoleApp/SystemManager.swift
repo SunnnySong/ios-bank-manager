@@ -15,6 +15,8 @@ struct SystemManager {
         switch Menu(rawValue: userInput) {
         case .open:
             print("은행 개점")
+            Bank().queueUpCustomer()
+//            Bank().servingCustomer()
         case .close:
             print("은행 클로즈")
             return

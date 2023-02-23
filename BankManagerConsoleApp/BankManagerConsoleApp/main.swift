@@ -8,6 +8,7 @@ import Foundation
 
 
 //BankManager().run()
+SystemManager().run()
 
 
 

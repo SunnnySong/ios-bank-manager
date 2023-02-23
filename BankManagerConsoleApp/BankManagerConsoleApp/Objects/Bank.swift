@@ -14,24 +14,43 @@ struct Bank {
 //    var numberOfBanker = [Banker]()
     
     // 은행 대기열
-    let waitingQueue = WaitingManager<Customer>()
+    let waitingQueue = WaitingManager<UInt>()
     
-    // 영업 시작하기
+    // 오늘의 손님 수
+    let customers = Namespace.numberOfCustomer
     
     // 손님 번호표주기
     func queueUpCustomer() {
-        (1...Namespace.numberOfCustomer).forEach { _ in
-            bankManager.addCustomer(in: waitingQueue)
+        (1...customers).forEach { number in
+            bankManager.addCustomer(in: waitingQueue, number: number)
         }
+        
+        servingCustomer()
+    }
+    
+    // 은행원들이 손님 응대하기
+    func servingCustomer() {
+        (1...customers).forEach { _ in
+            // 은행 업무 시작
+            guard let customerNumber = bankManager.serveCustomer(with: waitingQueue) else { return }
+            // 은행 업무 시작했다고 알리기
+            shareService(status: customerNumber, SOF: true)
+            bankManager.working(time: 0.7)
+            shareService(status: customerNumber, SOF: false)
+        }
+        // 업무 종료
+        finish()
+    }
+    
+    // 손님 응대 현황 공유하기
+    func shareService(status: UInt, SOF: Bool) {
+        InputOutputManager.output(state: .working(status, SOF))
     }
     
     // 영업 종료하기
     func finish() {
-        InputOutputManager.output(state: .close(Namespace.numberOfCustomer, Double(Namespace.numberOfCustomer) * 0.7))
+        InputOutputManager.output(state: .close(customers, Double(customers) * 0.7))
     }
-    
-    // 손님 응대 현황 공유하기
-    
     
     // 객체2 : 행원
     struct Banker {

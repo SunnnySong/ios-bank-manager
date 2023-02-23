@@ -25,7 +25,7 @@ enum InputOutputManager {
 enum BankState {
     case open
     case close(UInt, Double)
-    case working(Int, Bool)
+    case working(UInt, Bool)
 }
 
 fileprivate extension BankState {
@@ -34,10 +34,10 @@ fileprivate extension BankState {
         case .open:
             return "1 : 은행개점 \n2 : 종료 \n입력 : "
         case .close(let numberOfCustomer, let customerTime):
-            return "업무가 마감되었습니다. 오늘 업무를 처리한 고객은 총 \(numberOfCustomer)명이며, 총 업무시간은 \(customerTime)초 입니다."
+            return "업무가 마감되었습니다. 오늘 업무를 처리한 고객은 총 \(numberOfCustomer)명이며, 총 업무시간은 \(customerTime)초 입니다.\n"
         case .working(let order, let result):
             let resultString = (result == true) ? "시작" : "완료"
-            return "\(order)번 고객 업무 \(resultString)"
+            return "\(order)번 고객 업무 \(resultString)\n"
         }
     }
 }
