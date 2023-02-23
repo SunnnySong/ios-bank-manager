@@ -7,7 +7,7 @@
 import Foundation
 
 
-BankManager().run()
+//BankManager().run()
 
 
 

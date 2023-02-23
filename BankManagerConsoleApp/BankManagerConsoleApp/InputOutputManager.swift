@@ -24,7 +24,7 @@ enum InputOutputManager {
 
 enum BankState {
     case open
-    case close(Int, Double)
+    case close(UInt, Double)
     case working(Int, Bool)
 }
 

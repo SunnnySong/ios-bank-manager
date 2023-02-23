@@ -6,42 +6,20 @@
 
 import Foundation
 
-// 은행 관리 업무
+// 은행 관리 업무: 모든 은행들은 아래와 같은 행동들을 한다.
+// 추후 프로토콜로 변경해보기.
 struct BankManager {
-    // 은행 업무 시작
-    func run() {
-        InputOutputManager.output(state: .open)
-        let userInput = InputOutputManager.input()
-
-        switch Menu(rawValue: userInput) {
-        case .open:
-            print("은행 개점")
-            waitingCustomer()
-            //    BankManager().start()
-        case .close:
-            print("은행 클로즈")
-            return
-        case .none:
-            print("잘못눌렸어요.")
-        }
-        run()
-    }
-}
-
-extension BankManager {
-    // 손님 줄세우기?
-    func waitingCustomer() {
-        let waitingQueue = WaitingManager<Customer>()
-        guard let customerSum = (10...30).randomElement() else { return }
-        
-        (0...customerSum).forEach { num in
-            waitingQueue.enqueue(Customer())
-            print("손님 \(num)명 대기")
-        }
+    // 손님 줄세우기
+    // 여기서 waitingQueue에 들어오는 item 을 customer type으로 지정해도 괜찮을지? 아니면 여기서도 제네릭으로 표현해야 하는지?
+    func addCustomer(in waitingQueue: WaitingManager<Customer>) {
+        waitingQueue.enqueue(Customer())
     }
     
-    func working() {
-        
+    func working(with waitingQueue: WaitingManager<Customer>, time: Double) {
+        // dequeue에 사실 completionHandler를 넣을까 했음.
+        _ = waitingQueue.dequeue()
+        // completionHandler를 이용하면 dequeue 완료된 이후 아래 코드 넣어주면 되니깐
+        sleep(UInt32(time))
     }
 }
 
