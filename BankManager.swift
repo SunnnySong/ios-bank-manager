@@ -13,7 +13,7 @@ struct BankManager: Bank {
 //    var numberOfBanker = [Banker]()
     
     // 은행 대기열
-    let waitingQueue = WaitingManager<UInt>()
+    let waitingQueue = WaitingManager<customerInfo>()
     
     // 오늘의 손님 수
     let customers = Namespace.numberOfCustomer
@@ -21,7 +21,7 @@ struct BankManager: Bank {
     // 손님 번호표주기
     func queueUpCustomer() {
         (1...customers).forEach { number in
-            addCustomer(in: waitingQueue, number: number)
+            addCustomer(number: number)
         }
         servingCustomer()
     }
@@ -30,7 +30,7 @@ struct BankManager: Bank {
     func servingCustomer() {
         (1...customers).forEach { _ in
             // 은행 업무 시작
-            guard let customerNumber = serveCustomer(with: waitingQueue) else { return }
+            guard let customerNumber = serveCustomer() else { return }
             // 은행 업무 시작했다고 알리기
             shareService(status: customerNumber, SOF: true)
             working(time: Namespace.workTime)
