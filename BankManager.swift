@@ -23,21 +23,18 @@ struct BankManager: Bank {
         (1...customers).forEach { number in
             addCustomer(number: number)
         }
-        servingCustomer()
     }
     
     // 은행원들이 손님 응대하기
-    func servingCustomer() {
+    func servingCustomer(completion: (UInt)->()) {
         (1...customers).forEach { _ in
             // 은행 업무 시작
             guard let customerNumber = serveCustomer() else { return }
             // 은행 업무 시작했다고 알리기
-            shareService(status: customerNumber, SOF: true)
+            completion(customerNumber)
             working(time: Namespace.workTime)
-            shareService(status: customerNumber, SOF: false)
+//            shareService(status: customerNumber, SOF: false)
         }
-        // 업무 종료
-        finish()
     }
     
     // 손님 응대 현황 공유하기
