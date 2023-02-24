@@ -7,18 +7,20 @@
 import Foundation 
 
 struct BankManager {
-    let waitingQueue = WaitingManager<Customer>()
+    let waitingQueue = WaitingManager<(UInt,Customer)>()
     let bank:Bank
-    
-    let a = BankAbility.numberOfCustomer
-    
-    for _ in (0...a) {
-        
-    }
+    let customerNumber = BankAbility.numberOfCustomer
     
     func operateBank() {
+        (1...customerNumber).forEach {
+            waitingQueue.enqueue(($0,Customer(taskDuration: BankAbility.durationOfTask)))
+        }
+            
         while let task  = waitingQueue.dequeue() {
-            bank.reception(of:task)
+            print("\(task.0)번 고객 업무 시작")
+            bank.reception(of:task.1)
+            print("\(task.0)번 고객 업무 완료")
         }
     }
+    
 }
