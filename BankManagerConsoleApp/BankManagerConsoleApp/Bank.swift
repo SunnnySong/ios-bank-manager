@@ -9,6 +9,10 @@ import Foundation
 
 struct Bank {
     func reception(of customer: Customer){
+        processTask(of: customer)
+    }
+    
+    private func processTask(of customer: Customer){
         customer.taskDuration.sleep()
     }
     
