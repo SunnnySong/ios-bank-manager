@@ -1,28 +1,11 @@
 //
-//  SystemManager.swift
+//  NameSpace.swift
 //  BankManagerConsoleApp
 //
-//  Created by 송선진 on 2023/02/23.
+//  Created by 송선진 on 2023/02/24.
 //
 
 import Foundation
-
-struct SystemManager {
-    func run() {
-        InputOutputManager.output(state: .open)
-        let userInput = InputOutputManager.input()
-
-        switch Menu(rawValue: userInput) {
-        case .open:
-            BankManager().queueUpCustomer()
-        case .close:
-            return
-        case .none:
-            print("올바르지 않은 입력")
-        }
-        run()
-    }
-}
 
 enum Namespace {
     enum CustomerAmount: UInt {
