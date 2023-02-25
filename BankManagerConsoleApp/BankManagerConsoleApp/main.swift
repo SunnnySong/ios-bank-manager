@@ -6,8 +6,7 @@
 
 import Foundation
 
-let bank = Bank()
-let bankManager = BankManager(bank: bank)
+let bankManager = BankManager(bank: Bank(waitingQueue: WaitingManager<(UInt,Customer)>()),inputManager: InputManager(),outputManager: OutputManager())
 
-bankManager.operateBank()
+bankManager.bankOpen()
 

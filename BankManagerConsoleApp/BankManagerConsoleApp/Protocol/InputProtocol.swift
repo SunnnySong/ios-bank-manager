@@ -1,5 +1,5 @@
 //
-//  InputManagerProtocol.swift
+//  InputProtocol.swift
 //  BankManagerConsoleApp
 //
 //  Created by DONGWOOK SEO on 2023/02/23.
@@ -7,14 +7,14 @@
 
 import Foundation
 
-protocol InputManagerProtocol {
+protocol InputProtocol {
     func getUserInput() -> String?
     
 }
 
 //MARK: - Extension
 
-extension InputManagerProtocol {
+extension InputProtocol {
     func getUserInput() -> String? {
         let inputedData = readLine()
         return inputedData
