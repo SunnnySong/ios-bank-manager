@@ -16,7 +16,8 @@ protocol InputProtocol {
 
 extension InputProtocol {
     func getUserInput() -> String? {
-        let inputedData = readLine()
+        var inputedData = readLine()
+        inputedData = inputedData?.trimmingCharacters(in: [" "])
         return inputedData
     }
     

@@ -10,6 +10,6 @@ import Foundation
 struct OutputManager: OutputProtocol {
 
     func showSystemOutput() {
-        print(OperateMenu.consolMenu)
+        print(OperateMenu.consolMenu, terminator: " ")
     }
 }

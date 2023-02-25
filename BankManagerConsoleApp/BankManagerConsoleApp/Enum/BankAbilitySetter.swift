@@ -18,8 +18,8 @@ enum BankAbility {
     
     //MARK: - Properties
     
-    static let numberOfClerk = 1
-    static let durationOfTask = 0.7
+    static let numberOfTeller:UInt = 1
+    static let durationOfTask:Double = 0.7
     static var numberOfCustomer:UInt {
         UInt.random(in: CustomerContants.min.rawValue...CustomerContants.max.rawValue)
     }
