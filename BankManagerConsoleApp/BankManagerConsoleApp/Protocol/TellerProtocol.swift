@@ -9,6 +9,7 @@ import Foundation
 
 protocol TellerProtocol {
     
-    func working()
+    func startWork(waitingNumber: UInt, queue: DispatchQueue, totalGroup: DispatchGroup)
+    func finishWork(waitingNumber: UInt)
     
 }

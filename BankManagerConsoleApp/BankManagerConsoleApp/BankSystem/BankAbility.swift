@@ -11,8 +11,8 @@ enum BankAbility {
     
     enum CustomerAmount: UInt {
         
-        case min = 10
-        case max = 30
+        case min = 1
+        case max = 10
         
         static var numberOfCustomer: UInt {
             guard let customerSum = (CustomerAmount.min.rawValue...CustomerAmount.max.rawValue).randomElement() else { return 0 }
