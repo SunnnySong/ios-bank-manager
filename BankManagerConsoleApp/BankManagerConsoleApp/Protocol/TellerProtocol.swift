@@ -9,6 +9,6 @@ import Foundation
 
 protocol TellerProtocol {
     
-    func work()
+    func work(group: DispatchGroup, number: UInt, task: Task, semaphore: DispatchSemaphore)
     
 }

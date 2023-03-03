@@ -45,30 +45,19 @@ extension BankManager: BankProtocol {
         let telle2 = DispatchSemaphore(value: 3)
 
         while let customer = waitingQueue.dequeue() {
-            group.enter()
+            
             if customer.task == Task.deposit {
-                DispatchQueue.global().async(group: group, execute: makeWorkItem(number: customer.number, task: customer.task, semaphore: telle1))
-                group.leave()
-            } else {
-                DispatchQueue.global().async(group: group, execute: makeWorkItem(number: customer.number, task: customer.task, semaphore: telle2))
-                group.leave()
+                work(group: group, number: customer.number, task: customer.task, semaphore: telle1)
+            }
+            if customer.task == Task.loan {
+                work(group: group, number: customer.number, task: customer.task, semaphore: telle2)
             }
 
         }
         group.wait()
         close()
     }
-    
-    func makeWorkItem(number: UInt, task: Task, semaphore: DispatchSemaphore) -> DispatchWorkItem {
-        let workItem = DispatchWorkItem {
-            semaphore.wait()
-            print("\(number) : \(task.rawValue)실행중")
-            Task.duration(of: task).sleep()
-            semaphore.signal()
-        }
-        return workItem
-    }
-    
+
     func close() {
         finalReport()
     }
@@ -81,8 +70,21 @@ extension BankManager: BankProtocol {
 
 extension BankManager: TellerProtocol {
     
-    func work() {
-        Task.duration(of: .loan).sleep()
+    func work(group: DispatchGroup ,number: UInt, task: Task, semaphore: DispatchSemaphore) {
+        group.enter()
+        DispatchQueue.global().async(group: group, execute: makeWorkItem(number: number, task: task, semaphore: semaphore))
+        group.leave()
+    }
+
+    private func makeWorkItem(number: UInt, task: Task, semaphore: DispatchSemaphore) -> DispatchWorkItem {
+        let workItem = DispatchWorkItem {
+            semaphore.wait()
+            print("\(number) : \(task.rawValue) 시작")
+            Task.duration(of: task).sleep()
+            semaphore.signal()
+            print("\(number) : \(task.rawValue) 완료")
+        }
+        return workItem
     }
     
 }
