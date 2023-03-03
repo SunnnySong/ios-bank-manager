@@ -40,24 +40,20 @@ extension BankManager: BankProtocol {
         generateWaiting(customers: numberOfGuest, to: waitingQueue)
         
         let group = DispatchGroup()
-        
-        let telle1 = DispatchSemaphore(value: 1)
-        let telle2 = DispatchSemaphore(value: 3)
+        let tellers = TellerProvider().getTellers()
 
         while let customer = waitingQueue.dequeue() {
+            let teller = tellers.first { teller in
+                teller.task == customer.task
+            }
+            guard let teller else { return }
+            work(group: group, number: customer.number, task: customer.task, semaphore: teller.tellerCount)
             
-            if customer.task == Task.deposit {
-                work(group: group, number: customer.number, task: customer.task, semaphore: telle1)
-            }
-            if customer.task == Task.loan {
-                work(group: group, number: customer.number, task: customer.task, semaphore: telle2)
-            }
-
         }
         group.wait()
         close()
     }
-
+    
     func close() {
         finalReport()
     }
@@ -65,7 +61,7 @@ extension BankManager: BankProtocol {
     func report(waitingNumber: UInt, task: Task, inProgress: Bool) {
         InputOutputManager.output(state: .working(waitingNumber, task.rawValue, inProgress))
     }
-
+    
 }
 
 extension BankManager: TellerProtocol {
@@ -75,14 +71,14 @@ extension BankManager: TellerProtocol {
         DispatchQueue.global().async(group: group, execute: makeWorkItem(number: number, task: task, semaphore: semaphore))
         group.leave()
     }
-
+    
     private func makeWorkItem(number: UInt, task: Task, semaphore: DispatchSemaphore) -> DispatchWorkItem {
         let workItem = DispatchWorkItem {
             semaphore.wait()
             print("\(number) : \(task.rawValue) 시작")
             Task.duration(of: task).sleep()
-            semaphore.signal()
             print("\(number) : \(task.rawValue) 완료")
+            semaphore.signal()
         }
         return workItem
     }
