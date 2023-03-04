@@ -10,11 +10,9 @@ import Foundation
 class Teller: TellerProtocol {
     
     var tellerCount: DispatchSemaphore
-    let task: Task
     
-    init(tellerCount: DispatchSemaphore, task: Task) {
+    init(tellerCount: DispatchSemaphore) {
         self.tellerCount = tellerCount
-        self.task = task
     }
     
 }

@@ -9,10 +9,11 @@ import Foundation
 
 enum TellerProvider {
     
-    static func getTellers() -> [Teller] {
+    static func getTellers() -> [Task:Teller] {
         
-        let tellers = Task.allCases.map { task in
-            Teller(tellerCount: DispatchSemaphore(value: Int(task.numberOfTeller)), task: task)
+        var tellers = [Task:Teller]()
+        Task.allCases.forEach { task in
+            tellers[task] = Teller(tellerCount: DispatchSemaphore(value: Int(task.numberOfTeller)))
         }
         
         return tellers

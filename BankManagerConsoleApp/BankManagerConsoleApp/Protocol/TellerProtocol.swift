@@ -10,6 +10,5 @@ import Foundation
 protocol TellerProtocol: AnyObject {
     
     var tellerCount: DispatchSemaphore { get }
-    var task: Task { get }
     
 }
