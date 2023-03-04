@@ -7,9 +7,9 @@
 
 import Foundation
 
-struct TellerProvider {
+enum TellerProvider {
     
-    func getTellers() -> [Teller] {
+    static func getTellers() -> [Teller] {
         
         let tellers = Task.allCases.map { task in
             Teller(tellerCount: DispatchSemaphore(value: Int(task.numberOfTeller)), task: task)

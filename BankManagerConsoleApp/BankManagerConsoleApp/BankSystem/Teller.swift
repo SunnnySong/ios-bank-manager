@@ -7,7 +7,7 @@
 
 import Foundation
 
-class Teller {
+class Teller: TellerProtocol {
     
     var tellerCount: DispatchSemaphore
     let task: Task

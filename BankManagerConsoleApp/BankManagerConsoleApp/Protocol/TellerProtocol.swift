@@ -7,8 +7,9 @@
 
 import Foundation
 
-protocol TellerProtocol {
+protocol TellerProtocol: AnyObject {
     
-    func work(group: DispatchGroup, number: UInt, task: Task, semaphore: DispatchSemaphore)
+    var tellerCount: DispatchSemaphore { get }
+    var task: Task { get }
     
 }

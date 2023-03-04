@@ -40,7 +40,7 @@ extension BankManager: BankProtocol {
         generateWaiting(customers: numberOfGuest, to: waitingQueue)
         
         let group = DispatchGroup()
-        let tellers = TellerProvider().getTellers()
+        let tellers = TellerProvider.getTellers()
 
         while let customer = waitingQueue.dequeue() {
             let teller = tellers.first { teller in
@@ -64,9 +64,9 @@ extension BankManager: BankProtocol {
     
 }
 
-extension BankManager: TellerProtocol {
+extension BankManager {
     
-    func work(group: DispatchGroup ,number: UInt, task: Task, semaphore: DispatchSemaphore) {
+    private func work(group: DispatchGroup ,number: UInt, task: Task, semaphore: DispatchSemaphore) {
         group.enter()
         DispatchQueue.global().async(group: group, execute: makeWorkItem(number: number, task: task, semaphore: semaphore))
         group.leave()
