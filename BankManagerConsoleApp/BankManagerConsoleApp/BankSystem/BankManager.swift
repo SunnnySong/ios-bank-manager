@@ -75,9 +75,9 @@ extension BankManager: TellerProtocol {
     private func makeWorkItem(number: UInt, task: Task, semaphore: DispatchSemaphore) -> DispatchWorkItem {
         let workItem = DispatchWorkItem {
             semaphore.wait()
-            print("\(number) : \(task.rawValue) 시작")
+            report(waitingNumber: number, task: task, inProgress: true)
             Task.duration(of: task).sleep()
-            print("\(number) : \(task.rawValue) 완료")
+            report(waitingNumber: number, task: task, inProgress: false)
             semaphore.signal()
         }
         return workItem
