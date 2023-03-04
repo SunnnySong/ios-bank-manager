@@ -43,9 +43,7 @@ extension BankManager: BankProtocol {
         let tellers = TellerProvider.getTellers()
 
         while let customer = waitingQueue.dequeue() {
-            let teller = tellers.first { teller in
-                teller.task == customer.task
-            }
+            let teller = tellers[customer.task]
             guard let teller else { return }
             work(group: group, number: customer.number, task: customer.task, semaphore: teller.tellerCount)
             
