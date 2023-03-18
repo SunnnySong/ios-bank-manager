@@ -181,18 +181,23 @@ class ViewController: UIViewController {
     
     private func addLabel(into stackView: UIStackView, with data: Customer) {
         DispatchQueue.main.async {
-            stackView.addArrangedSubview(CustomerInfoView(ticketNumber: data.number, task: data.task.rawValue))
+            stackView.addArrangedSubview(
+                CustomerInfoView(ticketNumber: data.number, task: data.task.rawValue)
+            )
         }
     }
     
     private func eliminateLabel(from stackView: UIStackView, by ticketNumber: UInt) {
         DispatchQueue.main.async {
             stackView.arrangedSubviews.forEach { view in
-                guard let customerView = view as? CustomerInfoView,
-                      let ticketLabel = customerView.ticketNumber.text,
-                      let ticketLabelNumber = UInt(ticketLabel) else { return }
+//                guard let customerView = view as? CustomerInfoView,
+//                      let ticketLabel = customerView.ticketNumberLabel.text,
+//                      let ticketLabelNumber = UInt(ticketLabel) else { return }
                 
-                if ticketLabelNumber == ticketNumber {
+                
+                guard let customerView = view as? CustomerInfoView else { return }
+                
+                if customerView.ticketNumber == ticketNumber {
                     stackView.removeArrangedSubview(view)
                     view.removeFromSuperview()
                     return

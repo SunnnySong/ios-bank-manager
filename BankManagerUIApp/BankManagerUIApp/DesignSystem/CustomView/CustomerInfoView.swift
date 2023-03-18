@@ -9,7 +9,8 @@ import UIKit
 
 final class CustomerInfoView: UIView {
     
-    var ticketNumber = BasicLabel(systemFontSize: 25)
+    var ticketNumber: UInt?
+    var ticketNumberLabel = BasicLabel(systemFontSize: 25)
     let hyphenLabel = BasicLabel(systemFontSize: 25)
     let taskTypeLabel = BasicLabel(systemFontSize: 25)
     
@@ -26,7 +27,8 @@ final class CustomerInfoView: UIView {
     
     convenience init(ticketNumber: UInt, task: String) {
         self.init(frame: .zero)
-        self.ticketNumber.text = String(ticketNumber)
+        self.ticketNumber = ticketNumber
+        self.ticketNumberLabel.text = self.ticketNumber?.description
         self.hyphenLabel.text = "-"
         self.taskTypeLabel.text = task
     }
@@ -40,7 +42,7 @@ final class CustomerInfoView: UIView {
     private func setLabelLayout() {
         addSubview(infoStackView)
         
-        infoStackView.addArrangedSubviews([ticketNumber, hyphenLabel, taskTypeLabel])
+        infoStackView.addArrangedSubviews([ticketNumberLabel, hyphenLabel, taskTypeLabel])
         
         infoStackView.translatesAutoresizingMaskIntoConstraints = false
         infoStackView.topAnchor.constraint(equalTo: topAnchor, constant: 3).isActive = true
