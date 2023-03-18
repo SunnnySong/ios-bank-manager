@@ -48,7 +48,7 @@ extension BankManager {
 
     
     func dealCustomer(group: DispatchGroup, completion: @escaping (Customer, Bool) -> Void) {
-        let queue = DispatchQueue.global()
+        let queue = DispatchQueue.global(qos: .background)
         
         while let customer = waitingQueue.dequeue() {
             group.enter()

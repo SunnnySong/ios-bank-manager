@@ -166,7 +166,10 @@ class ViewController: UIViewController {
         bankManager.dealCustomer(group: group) { customer, taskState in
             if taskState {
                 self.eliminateLabel(from: self.waitingStackView, by: customer.number)
-                self.addLabel(into: self.inprogressStackView, with: customer)
+                
+                DispatchQueue.main.async {
+                    self.addLabel(into: self.inprogressStackView, with: customer)
+                }
             }
             if !taskState {
                 self.eliminateLabel(from: self.inprogressStackView, by: customer.number)
@@ -180,21 +183,16 @@ class ViewController: UIViewController {
     }
     
     private func addLabel(into stackView: UIStackView, with data: Customer) {
-        DispatchQueue.main.async {
+//        DispatchQueue.main.async {
             stackView.addArrangedSubview(
                 CustomerInfoView(ticketNumber: data.number, task: data.task.rawValue)
             )
-        }
+//        }
     }
     
     private func eliminateLabel(from stackView: UIStackView, by ticketNumber: UInt) {
         DispatchQueue.main.async {
             stackView.arrangedSubviews.forEach { view in
-//                guard let customerView = view as? CustomerInfoView,
-//                      let ticketLabel = customerView.ticketNumberLabel.text,
-//                      let ticketLabelNumber = UInt(ticketLabel) else { return }
-                
-                
                 guard let customerView = view as? CustomerInfoView else { return }
                 
                 if customerView.ticketNumber == ticketNumber {
