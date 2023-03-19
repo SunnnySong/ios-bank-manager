@@ -63,6 +63,14 @@ extension BankManager {
         }
     }
     
+    func resetQueue() {
+        waitingQueue.clear()
+    }
+    
+    func findFirst() {
+        print(waitingQueue.peek())
+    }
+    
     private func report(waitingNumber: UInt, task: Task, inProgress: Bool) {
         InputOutputManager.output(state: .working(waitingNumber, task.rawValue, inProgress))
     }

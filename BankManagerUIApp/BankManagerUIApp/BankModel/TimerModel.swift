@@ -10,7 +10,7 @@ import UIKit
 final class TimerModel {
     
     weak var timerDelegate: TimerDelegate?
-    weak var timer: Timer?
+    var timer: Timer?
     
     private var time: Int = .zero {
         didSet {
@@ -26,9 +26,13 @@ final class TimerModel {
         }
     }
     
-    func stopTimer() {
+    func resetTimer() {
         self.timer?.invalidate()
         self.time = .zero
+    }
+    
+    func stopTimer() {
+        self.timer?.invalidate()
     }
     
     func updateTimerLabel() -> String {
