@@ -10,6 +10,7 @@ struct BankManager {
     private let numberOfGuest: UInt = CustomerConstant.numberOfCustomer
     private let waitingQueue: WaitingQueue<Customer>
     private let tellers: [Task: Teller]
+    let queue = DispatchQueue(label: "customerQueue", qos: .default, attributes: .concurrent)
     
     // MARK: - init
     
@@ -45,26 +46,39 @@ extension BankManager {
         }
         return newCustomers
     }
-
     
     func dealCustomer(group: DispatchGroup, completion: @escaping (Customer, Bool) -> Void) {
-        let queue = DispatchQueue.global(qos: .background)
+//        let queue = DispatchQueue.global(qos: .background)
         
         while let customer = waitingQueue.dequeue() {
-            group.enter()
-            guard let teller = tellers[customer.task] else { return }
             
-            queue.async(group: group) {
-                teller.work() { processState in
+            let workItem = DispatchWorkItem {
+                group.enter()
+                guard let teller = self.tellers[customer.task] else { return }
+                teller.work { processState in
                     completion(customer, processState)
                 }
+                group.leave()
             }
-            group.leave()
+            
+//            guard let teller = tellers[customer.task] else { return }
+            
+//            queue.async(group: group) {
+//                teller.work() { processState in
+//                    completion(customer, processState)
+//                }
+//            }
+//            group.leave()
+            
+            queue.async(group: group, execute: workItem)
         }
     }
     
     func resetQueue() {
+        // 현재 진행하고 있던 queue의 작업을 일시 정지, 후 재개.
+        queue.suspend()
         waitingQueue.clear()
+        queue.resume()
     }
     
     func findFirst() {

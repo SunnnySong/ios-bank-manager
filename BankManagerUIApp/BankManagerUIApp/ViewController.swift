@@ -168,16 +168,19 @@ class ViewController: UIViewController {
             if taskState {
                 self.eliminateLabel(from: self.waitingStackView, by: customer.number)
                 
-//                DispatchQueue.main.async {
+                DispatchQueue.global().async {
                     self.addLabel(into: self.inprogressStackView, with: customer)
-//                }
+                }
             }
             if !taskState {
-                self.eliminateLabel(from: self.inprogressStackView, by: customer.number)
+                DispatchQueue.global().async {
+                    self.eliminateLabel(from: self.inprogressStackView, by: customer.number)
+                }
             }
         }
         
-        group.notify(queue: .global()) {
+        group.notify(queue: bankManager.queue) {
+            print("here")
             self.timer.stopTimer()
         }
     }
